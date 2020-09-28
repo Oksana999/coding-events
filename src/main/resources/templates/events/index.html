@@ -5,11 +5,30 @@
 
 <header th:replace="fragments :: header"></header>
 
-<ul>
-    <th:block th:each="event : ${events}">
-        <li th:text="${event}"></li>
-    </th:block>
-</ul>
+<!--<ul>-->
+<!--    <th:block th:each="event : ${events}">-->
+<!--        <li th:text="${event}"></li>-->
+<!--    </th:block>-->
+<!--</ul>-->
+<table>
+    <thead>
+    <tr>
+        <th>events</th>
+        <th>description</th>
+        <th>location</th>
+        <th>picture</th>
+    </tr>
+    </thead>
+    <tr th:each="event:${events}">
+        <td th:text="${event.getKey()}"></td>
+        <td th:text="${event.getValue().getDescription()}"></td>
+        <td class="location-td"><span th:replace="fragments1 :: navigation(${event.getValue().getLocation()})"></span>
+        </td>
+        <td class="picture-td">
+            <img class="img-style" th:src="'/img/'+${event.getValue().getPicture()}"/>
+        </td>
+    </tr>
+</table>
 
 </body>
 </html>
